@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  payment-manager-api:
+    image: bohdanbulakh/payment-manager-api:lab1
+    container_name: payment-manager-api-lab1
+    restart: on-failure:5
+    depends_on:
+      - watchtower
+    ports:
+      - "${PUBLIC_API_PORT}:${PORT}"
+    env_file:
+      - .env
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      - "--cleanup"
+      - "-i"
+      - "60"
