@@ -1,4 +1,3 @@
-import { InvalidEntityIdException } from '../common/exceptions/invalid-entity-id.exception';
 import { randomUUID } from 'node:crypto';
 
 export type EntityWithId<T> = T & { id: string };
@@ -14,8 +13,8 @@ export class FakeDao<Data extends object> {
     }));
   }
 
-  getById(id: string): EntityWithId<Data> {
-    this.exists(id);
+  getById(id: string): EntityWithId<Data> | undefined {
+    if (!this.exists(id)) return;
 
     return {
       id,
@@ -23,8 +22,8 @@ export class FakeDao<Data extends object> {
     };
   }
 
-  updateById(id: string, data: Data): EntityWithId<Data> {
-    this.exists(id);
+  updateById(id: string, data: Data): EntityWithId<Data> | undefined {
+    if (!this.exists(id)) return;
     this.data.set(id, data);
 
     return {
@@ -33,7 +32,9 @@ export class FakeDao<Data extends object> {
     };
   }
 
-  deleteById(id: string): EntityWithId<Data> {
+  deleteById(id: string): EntityWithId<Data> | undefined {
+    if (!this.exists(id)) return;
+
     const result = this.getById(id);
     this.data.delete(id);
 
@@ -50,9 +51,7 @@ export class FakeDao<Data extends object> {
     };
   }
 
-  private exists(id: string): true | never {
-    const result = this.data.has(id);
-    if (!result) throw new InvalidEntityIdException('User');
-    return true;
+  exists(id: string): boolean {
+    return this.data.has(id);
   }
 }
