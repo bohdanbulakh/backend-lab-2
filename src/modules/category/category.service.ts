@@ -16,7 +16,7 @@ export class CategoryService {
     return this.categoryDao.create(data);
   }
 
-  deleteById(id: string) {
+  deleteById(id: string): CategoryResponse {
     const result = this.categoryDao.deleteById(id);
     if (!result) throw new InvalidEntityIdException('Category');
 

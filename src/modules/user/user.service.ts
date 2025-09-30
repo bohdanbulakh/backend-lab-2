@@ -23,7 +23,7 @@ export class UserService {
     return this.userDao.create(data);
   }
 
-  deleteById(id: string) {
+  deleteById(id: string): UserResponse {
     const result = this.userDao.deleteById(id);
     if (!result) throw new InvalidEntityIdException('User');
 
