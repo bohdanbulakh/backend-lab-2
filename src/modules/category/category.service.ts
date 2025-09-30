@@ -12,13 +12,6 @@ export class CategoryService {
     return this.categoryDao.getAll();
   }
 
-  getById(id: string): CategoryResponse {
-    const result = this.categoryDao.getById(id);
-    if (!result) throw new InvalidEntityIdException('Category');
-
-    return result;
-  }
-
   create(data: CategoryEntity): CategoryResponse {
     return this.categoryDao.create(data);
   }
