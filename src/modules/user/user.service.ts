@@ -8,6 +8,10 @@ import { Injectable } from '@nestjs/common';
 export class UserService {
   constructor(private readonly userDao: UserFakeDao) {}
 
+  getAll(): UserResponse[] {
+    return this.userDao.getAll();
+  }
+
   getById(id: string): UserResponse {
     const result = this.userDao.getById(id);
     if (!result) throw new InvalidEntityIdException('User');
@@ -17,13 +21,6 @@ export class UserService {
 
   create(data: UserEntity): UserResponse {
     return this.userDao.create(data);
-  }
-
-  updateById(id: string, data: UserEntity): UserResponse {
-    const result = this.userDao.updateById(id, data);
-    if (!result) throw new InvalidEntityIdException('User');
-
-    return result;
   }
 
   deleteById(id: string) {
