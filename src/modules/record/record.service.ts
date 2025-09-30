@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { RecordResponse } from '../../common/responses/record.response';
 import { RecordFakeDao } from '../../dao/record/record.fake-dao';
 import { CreateRecordDto } from '../../common/dto/create-record.dto';
-import { GetRecordQueryDto } from '../../common/dto/get-record-query.dto';
+import { GetRecordsQueryDto } from '../../common/dto/get-records-query.dto';
 import { isEmpty } from '../../common/utils/object.utils';
 import { EmptyQueryException } from '../../common/exceptions/empty-query.exception';
 
@@ -11,7 +11,7 @@ import { EmptyQueryException } from '../../common/exceptions/empty-query.excepti
 export class RecordService {
   constructor(private readonly recordDao: RecordFakeDao) {}
 
-  getAll(query: GetRecordQueryDto): RecordResponse[] {
+  getAll(query: GetRecordsQueryDto): RecordResponse[] {
     if (isEmpty(query)) throw new EmptyQueryException();
 
     return this.recordDao
