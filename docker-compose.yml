@@ -2,8 +2,8 @@ version: '3'
 
 services:
   payment-manager-api:
-    image: bohdanbulakh/payment-manager-api:lab1
-    container_name: payment-manager-api-lab1
+    image: bohdanbulakh/payment-manager-api:lab2
+    container_name: payment-manager-api-lab2
     restart: on-failure:5
     build:
       context: .
