@@ -1,4 +1,4 @@
-# [Payment Manager API](https://lab1.payment-manager.pp.ua/healthcheck)
+# [Payment Manager API](https://lab2.payment-manager.pp.ua)
 Simple backend app
 
 ### Requirements
