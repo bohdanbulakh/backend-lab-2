@@ -1,7 +1,7 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 
-export class InvalidEntityIdException extends HttpException {
+export class InvalidEntityIdException extends NotFoundException {
   constructor(entity: string) {
-    super(`${entity} with such id is not found`, HttpStatus.BAD_REQUEST);
+    super(`${entity} with such id is not found`);
   }
 }
