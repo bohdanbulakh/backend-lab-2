@@ -2,22 +2,35 @@ version: '3'
 
 services:
   payment-manager-api:
-    image: bohdanbulakh/payment-manager-api:lab2
-    container_name: payment-manager-api-lab2
+    image: bohdanbulakh/payment-manager-api:lab3
+    container_name: payment-manager-api-lab3
     restart: on-failure:5
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
       - watchtower
+      - postgres
     ports:
       - "${PUBLIC_API_PORT}:${PORT}"
     env_file:
       - .env
 
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres-be-lab3
+    depends_on:
+      - watchtower
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - "./.data:/var/lib/postgresql/data"
+    env_file:
+      - .env
+
   watchtower:
     image: containrrr/watchtower
-    container_name: watchtower-be-lab2
+    container_name: watchtower-be-lab3
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command:
