@@ -1,4 +1,4 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { drizzle, PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { ConfigService } from '../config/config.service';
 import { ConfigModule } from '../config/config.module';
@@ -8,7 +8,6 @@ import postgres from 'postgres';
 export type PostgresDatabase = PostgresJsDatabase<typeof schema>;
 export const POSTGRES_CONNECTION = 'POSTGRES_CONNECTION';
 
-@Global()
 @Module({
   imports: [ConfigModule],
   providers: [
