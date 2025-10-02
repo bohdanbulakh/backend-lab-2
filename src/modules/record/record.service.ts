@@ -1,21 +1,21 @@
 import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity-id.exception';
 import { Injectable } from '@nestjs/common';
 import { RecordResponse } from '../../common/responses/record.response';
-import { RecordFakeDao } from '../../dao/record/record.fake-dao';
 import { CreateRecordDto } from '../../common/dto/create-record.dto';
 import { GetRecordsQueryDto } from '../../common/dto/get-records-query.dto';
 import { isEmpty } from '../../common/utils/object.utils';
 import { EmptyQueryException } from '../../common/exceptions/empty-query.exception';
+import { RecordDao } from '../../dao/record/record.dao';
 
 @Injectable()
 export class RecordService {
-  constructor(private readonly recordDao: RecordFakeDao) {}
+  constructor(private readonly recordDao: RecordDao) {}
 
-  getAll(query: GetRecordsQueryDto): RecordResponse[] {
+  async getAll(query: GetRecordsQueryDto): Promise<RecordResponse[]> {
     if (isEmpty(query)) throw new EmptyQueryException();
+    const data = await this.recordDao.getAll();
 
-    return this.recordDao
-      .getAll()
+    return data
       .filter(
         ({ categoryId }) =>
           !query.categoryId || categoryId === query.categoryId,
@@ -23,22 +23,22 @@ export class RecordService {
       .filter(({ userId }) => !query.userId || userId === query.userId);
   }
 
-  getById(id: string): RecordResponse {
-    const result = this.recordDao.getById(id);
+  async getById(id: string): Promise<RecordResponse> {
+    const result = await this.recordDao.getById(id);
     if (!result) throw new InvalidEntityIdException('Record');
 
     return result;
   }
 
-  create(data: CreateRecordDto): RecordResponse {
+  create(data: CreateRecordDto): Promise<RecordResponse> {
     return this.recordDao.create({
       ...data,
       createdAt: new Date(),
     });
   }
 
-  deleteById(id: string): RecordResponse {
-    const result = this.recordDao.deleteById(id);
+  async deleteById(id: string): Promise<RecordResponse> {
+    const result = await this.recordDao.deleteById(id);
     if (!result) throw new InvalidEntityIdException('Record');
 
     return result;

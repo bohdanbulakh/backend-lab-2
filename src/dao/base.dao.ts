@@ -52,7 +52,7 @@ export abstract class BaseDao<
     return row as Row | undefined;
   }
 
-  public async delete(id: Row['id']): Promise<Row | undefined> {
+  public async deleteById(id: Row['id']): Promise<Row | undefined> {
     const [row] = await this.postgres
       .delete(this.table as AnyPgTable)
       .where(eq(this.table.id as any, id))

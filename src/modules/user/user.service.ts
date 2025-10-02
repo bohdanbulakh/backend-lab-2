@@ -1,30 +1,30 @@
 import { UserEntity } from '../../dao/user/user.entity';
 import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity-id.exception';
 import { UserResponse } from '../../common/responses/user.response';
-import { UserFakeDao } from '../../dao/user/user.fake-dao';
 import { Injectable } from '@nestjs/common';
+import { UserDao } from '../../dao/user/user.dao';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userDao: UserFakeDao) {}
+  constructor(private readonly userDao: UserDao) {}
 
-  getAll(): UserResponse[] {
+  getAll(): Promise<UserResponse[]> {
     return this.userDao.getAll();
   }
 
-  getById(id: string): UserResponse {
-    const result = this.userDao.getById(id);
+  async getById(id: string): Promise<UserResponse> {
+    const result = await this.userDao.getById(id);
     if (!result) throw new InvalidEntityIdException('User');
 
     return result;
   }
 
-  create(data: UserEntity): UserResponse {
+  create(data: UserEntity): Promise<UserResponse> {
     return this.userDao.create(data);
   }
 
-  deleteById(id: string): UserResponse {
-    const result = this.userDao.deleteById(id);
+  async deleteById(id: string): Promise<UserResponse> {
+    const result = await this.userDao.deleteById(id);
     if (!result) throw new InvalidEntityIdException('User');
 
     return result;

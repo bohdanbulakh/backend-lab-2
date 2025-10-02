@@ -17,22 +17,22 @@ export class RecordController {
   constructor(private readonly recordService: RecordService) {}
 
   @Get()
-  getAll(@Query() query: GetRecordsQueryDto): RecordResponse[] {
+  getAll(@Query() query: GetRecordsQueryDto): Promise<RecordResponse[]> {
     return this.recordService.getAll(query);
   }
 
   @Get(':recordId')
-  getById(@Param('recordId') id: string): RecordResponse {
+  getById(@Param('recordId') id: string): Promise<RecordResponse> {
     return this.recordService.getById(id);
   }
 
   @Post()
-  create(@Body() data: CreateRecordDto): RecordResponse {
+  create(@Body() data: CreateRecordDto): Promise<RecordResponse> {
     return this.recordService.create(data);
   }
 
   @Delete(':recordId')
-  updateById(@Param('recordId') id: string): RecordResponse {
+  updateById(@Param('recordId') id: string): Promise<RecordResponse> {
     return this.recordService.deleteById(id);
   }
 }

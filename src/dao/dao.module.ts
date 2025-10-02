@@ -1,11 +1,11 @@
 import { Global, Module } from '@nestjs/common';
-import { UserFakeDao } from './user/user.fake-dao';
-import { CategoryFakeDao } from './category/category.fake-dao';
-import { RecordFakeDao } from './record/record.fake-dao';
+import { UserDao } from './user/user.dao';
+import { CategoryDao } from './category/category.dao';
+import { RecordDao } from './record/record.dao';
 
 @Global()
 @Module({
-  providers: [UserFakeDao, CategoryFakeDao, RecordFakeDao],
-  exports: [UserFakeDao, CategoryFakeDao, RecordFakeDao],
+  providers: [UserDao, CategoryDao, RecordDao],
+  exports: [UserDao, CategoryDao, RecordDao],
 })
 export class DaoModule {}
