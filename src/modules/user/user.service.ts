@@ -1,8 +1,7 @@
-import { UserEntity } from '../../dao/user/user.entity';
 import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity-id.exception';
 import { UserResponse } from '../../common/responses/user.response';
 import { Injectable } from '@nestjs/common';
-import { UserDao } from '../../dao/user/user.dao';
+import { UserDao, UserEntity } from '../../dao/dao/user.dao';
 
 @Injectable()
 export class UserService {

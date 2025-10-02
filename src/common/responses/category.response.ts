@@ -1,5 +1,5 @@
-import { CategoryEntity } from '../../dao/category/category.entity';
+import { CategoryEntity } from '../../dao/dao/category.dao';
 
-export class CategoryResponse extends CategoryEntity {
+export type CategoryResponse = CategoryEntity & {
   id: string;
-}
+};

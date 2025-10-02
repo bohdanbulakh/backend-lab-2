@@ -1,5 +1,5 @@
-import { RecordEntity } from '../../dao/record/record.entity';
+import { RecordEntity } from '../../dao/dao/record.dao';
 
-export class RecordResponse extends RecordEntity {
+export type RecordResponse = RecordEntity & {
   id: string;
-}
+};

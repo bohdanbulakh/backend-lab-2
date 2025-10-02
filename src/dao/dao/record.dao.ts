@@ -1,8 +1,10 @@
 import { BaseDao } from '../base.dao';
 import { Inject, Injectable } from '@nestjs/common';
-import { POSTGRES_CONNECTION } from '../../db/drizzle.module';
 import type { PostgresDatabase } from '../../db/drizzle.module';
+import { POSTGRES_CONNECTION } from '../../db/drizzle.module';
 import { records } from '../../db/schema/record';
+
+export type RecordEntity = typeof records.$inferSelect;
 
 @Injectable()
 export class RecordDao extends BaseDao<typeof records> {

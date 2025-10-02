@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryResponse } from '../../common/responses/category.response';
-import { CategoryEntity } from '../../dao/category/category.entity';
+import type { CategoryEntity } from '../../dao/dao/category.dao';
 
 @Controller('/category')
 export class CategoryController {

@@ -1,5 +1,5 @@
-import { UserEntity } from '../../dao/user/user.entity';
+import { UserEntity } from '../../dao/dao/user.dao';
 
-export class UserResponse extends UserEntity {
+export type UserResponse = UserEntity & {
   id: string;
 }

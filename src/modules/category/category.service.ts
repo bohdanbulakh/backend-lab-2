@@ -1,8 +1,7 @@
 import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity-id.exception';
 import { Injectable } from '@nestjs/common';
 import { CategoryResponse } from '../../common/responses/category.response';
-import { CategoryEntity } from '../../dao/category/category.entity';
-import { CategoryDao } from '../../dao/category/category.dao';
+import { CategoryDao, CategoryEntity } from '../../dao/dao/category.dao';
 
 @Injectable()
 export class CategoryService {

@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResponse } from '../../common/responses/user.response';
-import { UserEntity } from '../../dao/user/user.entity';
+import type { UserEntity } from '../../dao/dao/user.dao';
 
 @Controller()
 export class UserController {

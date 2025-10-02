@@ -5,7 +5,7 @@ import { CreateRecordDto } from '../../common/dto/create-record.dto';
 import { GetRecordsQueryDto } from '../../common/dto/get-records-query.dto';
 import { isEmpty } from '../../common/utils/object.utils';
 import { EmptyQueryException } from '../../common/exceptions/empty-query.exception';
-import { RecordDao } from '../../dao/record/record.dao';
+import { RecordDao } from '../../dao/dao/record.dao';
 
 @Injectable()
 export class RecordService {

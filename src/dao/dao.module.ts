@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
-import { UserDao } from './user/user.dao';
-import { CategoryDao } from './category/category.dao';
-import { RecordDao } from './record/record.dao';
+import { UserDao } from './dao/user.dao';
+import { CategoryDao } from './dao/category.dao';
+import { RecordDao } from './dao/record.dao';
 
 @Global()
 @Module({
