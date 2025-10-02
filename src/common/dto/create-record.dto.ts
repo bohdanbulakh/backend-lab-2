@@ -1,6 +1,15 @@
+import { IsNotEmpty, IsNumber, IsUUID } from 'class-validator';
+
 export class CreateRecordDto {
-  name: string;
+  @IsNotEmpty()
+  @IsUUID()
   userId: string;
+
+  @IsNotEmpty()
+  @IsUUID()
   categoryId: string;
+
+  @IsNotEmpty()
+  @IsNumber()
   sum: number;
 }

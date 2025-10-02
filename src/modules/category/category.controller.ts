@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryResponse } from '../../common/responses/category.response';
-import type { CategoryEntity } from '../../dao/dao/category.dao';
+import { CreateCategoryDto } from '../../common/dto/create-category.dto';
 
 @Controller('/category')
 export class CategoryController {
@@ -13,7 +13,7 @@ export class CategoryController {
   }
 
   @Post()
-  create(@Body() data: CategoryEntity): Promise<CategoryResponse> {
+  create(@Body() data: CreateCategoryDto): Promise<CategoryResponse> {
     return this.categoryService.create(data);
   }
 

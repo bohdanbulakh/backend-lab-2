@@ -2,6 +2,7 @@ import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity
 import { UserResponse } from '../../common/responses/user.response';
 import { Injectable } from '@nestjs/common';
 import { UserDao, UserEntity } from '../../dao/dao/user.dao';
+import { CreateUserDto } from '../../common/dto/create-user.dto';
 
 @Injectable()
 export class UserService {
@@ -18,7 +19,7 @@ export class UserService {
     return result;
   }
 
-  create(data: UserEntity): Promise<UserResponse> {
+  create(data: CreateUserDto): Promise<UserResponse> {
     return this.userDao.create(data);
   }
 

@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResponse } from '../../common/responses/user.response';
-import type { UserEntity } from '../../dao/dao/user.dao';
+import { CreateUserDto } from '../../common/dto/create-user.dto';
 
 @Controller()
 export class UserController {
@@ -18,12 +18,12 @@ export class UserController {
   }
 
   @Post('user')
-  create(@Body() data: UserEntity): Promise<UserResponse> {
+  create(@Body() data: CreateUserDto): Promise<UserResponse> {
     return this.userService.create(data);
   }
 
   @Delete('/user/:userId')
-  updateById(@Param('userId') id: string): Promise<UserResponse> {
+  deleteById(@Param('userId') id: string): Promise<UserResponse> {
     return this.userService.deleteById(id);
   }
 }

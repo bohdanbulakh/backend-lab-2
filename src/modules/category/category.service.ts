@@ -1,7 +1,8 @@
 import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity-id.exception';
 import { Injectable } from '@nestjs/common';
 import { CategoryResponse } from '../../common/responses/category.response';
-import { CategoryDao, CategoryEntity } from '../../dao/dao/category.dao';
+import { CategoryDao } from '../../dao/dao/category.dao';
+import { CreateCategoryDto } from '../../common/dto/create-category.dto';
 
 @Injectable()
 export class CategoryService {
@@ -11,7 +12,7 @@ export class CategoryService {
     return this.categoryDao.getAll();
   }
 
-  create(data: CategoryEntity): Promise<CategoryResponse> {
+  create(data: CreateCategoryDto): Promise<CategoryResponse> {
     return this.categoryDao.create(data);
   }
 
