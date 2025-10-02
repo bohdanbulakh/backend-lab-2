@@ -1,4 +1,3 @@
-import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity-id.exception';
 import { Injectable } from '@nestjs/common';
 import { RecordResponse } from '../../common/responses/record.response';
 import { CreateRecordDto } from '../../common/dto/create-record.dto';
@@ -24,10 +23,7 @@ export class RecordService {
   }
 
   async getById(id: string): Promise<RecordResponse> {
-    const result = await this.recordDao.getById(id);
-    if (!result) throw new InvalidEntityIdException('Record');
-
-    return result;
+    return (await this.recordDao.getById(id))!;
   }
 
   create(data: CreateRecordDto): Promise<RecordResponse> {
@@ -38,9 +34,6 @@ export class RecordService {
   }
 
   async deleteById(id: string): Promise<RecordResponse> {
-    const result = await this.recordDao.deleteById(id);
-    if (!result) throw new InvalidEntityIdException('Record');
-
-    return result;
+    return (await this.recordDao.deleteById(id))!;
   }
 }

@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResponse } from '../../common/responses/user.response';
 import { CreateUserDto } from '../../common/dto/create-user.dto';
+import { UserByIdValidationPipe } from '../../common/pipes/pipes/user-by-id-validation.pipe';
 
 @Controller()
 export class UserController {
@@ -13,7 +14,9 @@ export class UserController {
   }
 
   @Get('/user/:userId')
-  getById(@Param('userId') id: string): Promise<UserResponse> {
+  getById(
+    @Param('userId', UserByIdValidationPipe) id: string,
+  ): Promise<UserResponse> {
     return this.userService.getById(id);
   }
 
@@ -23,7 +26,9 @@ export class UserController {
   }
 
   @Delete('/user/:userId')
-  deleteById(@Param('userId') id: string): Promise<UserResponse> {
+  deleteById(
+    @Param('userId', UserByIdValidationPipe) id: string,
+  ): Promise<UserResponse> {
     return this.userService.deleteById(id);
   }
 }

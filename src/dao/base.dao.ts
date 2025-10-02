@@ -59,4 +59,8 @@ export abstract class BaseDao<
       .returning();
     return row as Row | undefined;
   }
+
+  public getTableName(): string {
+    return (this.table as AnyPgTable)[Symbol.for('drizzle:Name')];
+  }
 }

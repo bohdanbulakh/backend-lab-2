@@ -11,6 +11,7 @@ import { RecordService } from './record.service';
 import { GetRecordsQueryDto } from '../../common/dto/get-records-query.dto';
 import { RecordResponse } from '../../common/responses/record.response';
 import { CreateRecordDto } from '../../common/dto/create-record.dto';
+import { RecordByIdValidationPipe } from '../../common/pipes/pipes/record-by-id-validation.pipe';
 
 @Controller('/record')
 export class RecordController {
@@ -22,7 +23,9 @@ export class RecordController {
   }
 
   @Get(':recordId')
-  getById(@Param('recordId') id: string): Promise<RecordResponse> {
+  getById(
+    @Param('recordId', RecordByIdValidationPipe) id: string,
+  ): Promise<RecordResponse> {
     return this.recordService.getById(id);
   }
 
@@ -32,7 +35,9 @@ export class RecordController {
   }
 
   @Delete(':recordId')
-  updateById(@Param('recordId') id: string): Promise<RecordResponse> {
+  deleteById(
+    @Param('recordId', RecordByIdValidationPipe) id: string,
+  ): Promise<RecordResponse> {
     return this.recordService.deleteById(id);
   }
 }

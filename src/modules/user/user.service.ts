@@ -1,7 +1,6 @@
-import { InvalidEntityIdException } from '../../common/exceptions/invalid-entity-id.exception';
 import { UserResponse } from '../../common/responses/user.response';
 import { Injectable } from '@nestjs/common';
-import { UserDao, UserEntity } from '../../dao/dao/user.dao';
+import { UserDao } from '../../dao/dao/user.dao';
 import { CreateUserDto } from '../../common/dto/create-user.dto';
 
 @Injectable()
@@ -13,10 +12,7 @@ export class UserService {
   }
 
   async getById(id: string): Promise<UserResponse> {
-    const result = await this.userDao.getById(id);
-    if (!result) throw new InvalidEntityIdException('User');
-
-    return result;
+    return (await this.userDao.getById(id))!;
   }
 
   create(data: CreateUserDto): Promise<UserResponse> {
@@ -24,9 +20,6 @@ export class UserService {
   }
 
   async deleteById(id: string): Promise<UserResponse> {
-    const result = await this.userDao.deleteById(id);
-    if (!result) throw new InvalidEntityIdException('User');
-
-    return result;
+    return (await this.userDao.deleteById(id))!;
   }
 }
