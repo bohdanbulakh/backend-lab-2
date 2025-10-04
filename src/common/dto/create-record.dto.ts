@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsNumber, IsUUID } from 'class-validator';
+import {
+  IsCurrency,
+  IsNotEmpty,
+  IsNumber,
+  IsUUID,
+  MaxLength,
+} from 'class-validator';
 
 export class CreateRecordDto {
   @IsNotEmpty()
@@ -12,4 +18,9 @@ export class CreateRecordDto {
   @IsNotEmpty()
   @IsNumber()
   sum: number;
+
+  @IsNotEmpty()
+  @IsCurrency()
+  @MaxLength(3)
+  currencyName: string;
 }
