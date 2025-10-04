@@ -1,6 +1,6 @@
 import { users } from './users';
 import { categories } from './categories';
-import { records } from './record';
+import { records } from './records';
 import { currencies } from './currencies';
 
 export const schema = {

@@ -1,6 +1,6 @@
 import { pgTable, uuid, varchar } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
-import { records } from './record';
+import { records } from './records';
 
 export const categories = pgTable('categories', {
   id: uuid('id').primaryKey().defaultRandom(),

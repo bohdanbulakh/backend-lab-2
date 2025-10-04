@@ -1,6 +1,6 @@
 import { pgTable, uuid, varchar } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
-import { records } from './record';
+import { records } from './records';
 import { currencies } from './currencies';
 
 export const users = pgTable('users', {
