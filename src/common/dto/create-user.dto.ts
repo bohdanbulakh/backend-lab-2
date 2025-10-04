@@ -1,4 +1,9 @@
-import { IsCurrency, IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import {
+  IsISO4217CurrencyCode,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -7,7 +12,6 @@ export class CreateUserDto {
   name: string;
 
   @IsNotEmpty()
-  @IsCurrency()
-  @MaxLength(3)
+  @IsISO4217CurrencyCode()
   defaultCurrencyName: string;
 }
