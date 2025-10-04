@@ -12,6 +12,7 @@ import { GetRecordsQueryDto } from '../../common/dto/get-records-query.dto';
 import { RecordResponse } from '../../common/responses/record.response';
 import { CreateRecordDto } from '../../common/dto/create-record.dto';
 import { RecordByIdValidationPipe } from '../../common/pipes/pipes/record-by-id-validation.pipe';
+import { CreateRecordValidationPipe } from '../../common/pipes/pipes/create-record-validation.pipe';
 
 @Controller('/record')
 export class RecordController {
@@ -30,7 +31,9 @@ export class RecordController {
   }
 
   @Post()
-  create(@Body() data: CreateRecordDto): Promise<RecordResponse> {
+  create(
+    @Body(CreateRecordValidationPipe) data: CreateRecordDto,
+  ): Promise<RecordResponse> {
     return this.recordService.create(data);
   }
 
