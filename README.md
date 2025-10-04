@@ -2,6 +2,10 @@
 
 Simple backend app
 
+### Variant for the 3rd lab
+
+IM-31 Group ⇒ 31 % 3 = 1
+
 ### Requirements
 
 - Git
@@ -36,9 +40,11 @@ Simple backend app
 ### Running with Docker Compose
 
 1. Create `.env` file in root directory of the app, use [.env.example](.env.example) as reference
+
 > [!WARNING]
 > If your database and api both are running in docker containers, your `DATABASE_URL` should look like this:
 `DATABASE_URL=postgres://username:password@DATABASE_CONTAINER_NAME:DATABASE_PORT_INSIDE_DATABASE_CONTAINER/database_name`
+
 2. Start docker compose
    ```sh
    docker compose up --build
