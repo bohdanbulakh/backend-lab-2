@@ -23,7 +23,7 @@ export const records = pgTable('records', {
     .notNull(),
 
   currencyName: varchar('default_currency_name', { length: 3 })
-    .references(() => currencies.id)
+    .references(() => currencies.id, { onDelete: 'cascade' })
     .notNull(),
 });
 
