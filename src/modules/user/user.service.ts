@@ -31,7 +31,7 @@ export class UserService {
       await this.currencyDao.getOrCreate({ id: data.defaultCurrencyName });
     }
 
-    return (await this.currencyDao.update(id, data)) as UserResponse;
+    return (await this.userDao.update(id, data)) as UserResponse;
   }
 
   async deleteById(id: string): Promise<UserResponse> {
