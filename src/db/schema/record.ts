@@ -23,7 +23,7 @@ export const records = pgTable('records', {
     .notNull(),
 
   currencyName: varchar('default_currency_name', { length: 3 })
-    .references(() => currencies.name)
+    .references(() => currencies.id)
     .notNull(),
 });
 
@@ -38,6 +38,6 @@ export const recordsRelations = relations(records, ({ one }) => ({
   }),
   currency: one(currencies, {
     fields: [records.currencyName],
-    references: [currencies.name],
+    references: [currencies.id],
   }),
 }));

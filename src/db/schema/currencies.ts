@@ -4,7 +4,7 @@ import { users } from './users';
 import { records } from './record';
 
 export const currencies = pgTable('currencies', {
-  name: varchar('name', { length: 3 }).primaryKey().notNull(),
+  id: varchar('name', { length: 3 }).primaryKey().notNull(),
 });
 
 export const currenciesRelations = relations(currencies, ({ many }) => ({

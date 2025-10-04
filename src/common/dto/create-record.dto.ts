@@ -2,6 +2,7 @@ import {
   IsCurrency,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsUUID,
   MaxLength,
 } from 'class-validator';
@@ -19,8 +20,8 @@ export class CreateRecordDto {
   @IsNumber()
   sum: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsCurrency()
   @MaxLength(3)
-  currencyName: string;
+  currencyName?: string;
 }
