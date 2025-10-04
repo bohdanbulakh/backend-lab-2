@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { UserDao } from '../../dao/dao/user.dao';
 import { CreateUserDto } from '../../common/dto/create-user.dto';
 import { CurrencyDao } from '../../dao/dao/currency.dao';
+import { UpdateUserDto } from '../../common/dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -23,6 +24,14 @@ export class UserService {
     await this.currencyDao.getOrCreate({ id: data.defaultCurrencyName });
 
     return this.userDao.create(data);
+  }
+
+  async updateById(id: string, data: UpdateUserDto): Promise<UserResponse> {
+    if (data.defaultCurrencyName) {
+      await this.currencyDao.getOrCreate({ id: data.defaultCurrencyName });
+    }
+
+    return (await this.currencyDao.update(id, data)) as UserResponse;
   }
 
   async deleteById(id: string): Promise<UserResponse> {
