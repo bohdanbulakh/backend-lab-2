@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResponse } from '../../common/responses/user.response';
-import { CreateUserDto } from '../../common/dto/create-user.dto';
+import { RegisterUserDto } from '../../common/dto/register-user.dto';
 import { UserByIdValidationPipe } from '../../common/pipes/pipes/user-by-id-validation.pipe';
 import { UpdateUserDto } from '../../common/dto/update-user.dto';
 
@@ -30,7 +30,7 @@ export class UserController {
   }
 
   @Post('user')
-  create(@Body() data: CreateUserDto): Promise<UserResponse> {
+  create(@Body() data: RegisterUserDto): Promise<UserResponse> {
     return this.userService.create(data);
   }
 
