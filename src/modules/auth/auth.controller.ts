@@ -5,13 +5,16 @@ import { LocalGuard } from '../../common/guards/local.guard';
 import { GetUser } from '../../common/decorators/get-user.decorator';
 import type { AuthUser } from './type/auth-user';
 import { LoginResponse } from '../../common/dto/login.response';
+import { UserResponse } from '../../common/responses/user.response';
 
 @Controller('/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/register')
-  register(@Body() body: RegisterUserDto) {}
+  register(@Body() data: RegisterUserDto): Promise<UserResponse> {
+    return this.authService.register(data);
+  }
 
   @Post('/login')
   @UseGuards(LocalGuard)

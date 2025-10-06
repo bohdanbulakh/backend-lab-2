@@ -1,15 +1,6 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResponse } from '../../common/responses/user.response';
-import { RegisterUserDto } from '../../common/dto/register-user.dto';
 import { UserByIdValidationPipe } from '../../common/pipes/pipes/user-by-id-validation.pipe';
 import { UpdateUserDto } from '../../common/dto/update-user.dto';
 
@@ -27,11 +18,6 @@ export class UserController {
     @Param('userId', UserByIdValidationPipe) id: string,
   ): Promise<UserResponse> {
     return this.userService.getById(id);
-  }
-
-  @Post('user')
-  create(@Body() data: RegisterUserDto): Promise<UserResponse> {
-    return this.userService.create(data);
   }
 
   @Patch('/user/:userId')

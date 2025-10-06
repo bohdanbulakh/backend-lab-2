@@ -1,7 +1,6 @@
 import { UserResponse } from '../../common/responses/user.response';
 import { Injectable } from '@nestjs/common';
 import { UserDao } from '../../dao/dao/user.dao';
-import { RegisterUserDto } from '../../common/dto/register-user.dto';
 import { CurrencyDao } from '../../dao/dao/currency.dao';
 import { UpdateUserDto } from '../../common/dto/update-user.dto';
 
@@ -18,12 +17,6 @@ export class UserService {
 
   async getById(id: string): Promise<UserResponse> {
     return (await this.userDao.getById(id))!;
-  }
-
-  async create(data: RegisterUserDto): Promise<UserResponse> {
-    await this.currencyDao.getOrCreate({ id: data.defaultCurrencyName });
-
-    return this.userDao.create(data);
   }
 
   async updateById(id: string, data: UpdateUserDto): Promise<UserResponse> {
