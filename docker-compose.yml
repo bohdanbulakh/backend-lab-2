@@ -2,8 +2,8 @@ version: '3'
 
 services:
   payment-manager-api:
-    image: bohdanbulakh/payment-manager-api:lab3
-    container_name: payment-manager-api-lab3
+    image: bohdanbulakh/payment-manager-api:lab4
+    container_name: payment-manager-api-lab4
     restart: on-failure:5
     build:
       context: .
@@ -18,7 +18,7 @@ services:
 
   postgres:
     image: postgres:17-alpine
-    container_name: postgres-be-lab3
+    container_name: postgres-be-lab4
     depends_on:
       - watchtower
     ports:
@@ -30,7 +30,7 @@ services:
 
   watchtower:
     image: containrrr/watchtower
-    container_name: watchtower-be-lab3
+    container_name: watchtower-be-lab4
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command:
