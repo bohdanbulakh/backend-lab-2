@@ -1,12 +1,11 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { UserDao } from '../../dao/dao/user.dao';
 import { JwtPayload } from './type/jwt-payload';
-import { AuthUser } from './type/auth-user';
+import { UserResponse } from '../../common/responses/user.response';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '../../config/config.service';
 import { LoginResponse } from '../../common/dto/login.response';
 import { RegisterUserDto } from '../../common/dto/register-user.dto';
-import { UserResponse } from '../../common/responses/user.response';
 import { CurrencyDao } from '../../dao/dao/currency.dao';
 import * as bcrypt from 'bcrypt';
 
@@ -19,7 +18,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  login(user: AuthUser): LoginResponse {
+  login(user: UserResponse): LoginResponse {
     const payload: JwtPayload = { sub: user.id };
 
     return {
@@ -40,7 +39,8 @@ export class AuthService {
     data.password = await this.hashPassword(data.password);
     await this.currencyDao.getOrCreate({ id: data.defaultCurrencyName });
 
-    return this.userDao.create(data);
+    const { password: _, ...user } = await this.userDao.create(data);
+    return user;
   }
 
   async hashPassword(password: string) {

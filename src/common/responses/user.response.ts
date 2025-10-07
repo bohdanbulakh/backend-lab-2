@@ -1,5 +1,4 @@
-import { UserEntity } from '../../dao/dao/user.dao';
+import { InferSelectModel } from 'drizzle-orm';
+import { users } from '../../db/schema/users';
 
-export type UserResponse = UserEntity & {
-  id: string;
-};
+export type UserResponse = Omit<InferSelectModel<typeof users>, 'password'>;

@@ -8,10 +8,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserResponse } from '../../common/responses/user.response';
 import { UserByIdValidationPipe } from '../../common/pipes/pipes/user-by-id-validation.pipe';
 import { UpdateUserDto } from '../../common/dto/update-user.dto';
 import { AccessGuard } from '../../common/guards/access.guard';
+import { UserResponse } from '../../common/responses/user.response';
 
 @Controller()
 export class UserController {

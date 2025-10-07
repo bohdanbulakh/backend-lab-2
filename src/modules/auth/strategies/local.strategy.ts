@@ -6,7 +6,7 @@ import { UserDao } from '../../../dao/dao/user.dao';
 import { InferSelectModel } from 'drizzle-orm';
 import { users } from '../../../db/schema/users';
 import { InvalidEntityIdException } from '../../../common/exceptions/invalid-entity-id.exception';
-import { AuthUser } from '../type/auth-user';
+import { UserResponse } from '../../../common/responses/user.response';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -14,9 +14,11 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  async validate(username: string, password: string): Promise<AuthUser> {
+  async validate(username: string, password: string): Promise<UserResponse> {
     const user: InferSelectModel<typeof users> | undefined =
       await this.userDao.getByUsername(username);
+
+    console.log(username);
 
     if (!user) throw new InvalidEntityIdException('users');
 

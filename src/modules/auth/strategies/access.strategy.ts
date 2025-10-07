@@ -5,7 +5,7 @@ import { UserDao } from '../../../dao/dao/user.dao';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { InvalidEntityIdException } from '../../../common/exceptions/invalid-entity-id.exception';
 import { JwtPayload } from '../type/jwt-payload';
-import { AuthUser } from '../type/auth-user';
+import { UserResponse } from '../../../common/responses/user.response';
 
 @Injectable()
 export class AccessStrategy extends PassportStrategy(Strategy) {
@@ -21,15 +21,13 @@ export class AccessStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(
-    payload: JwtPayload,
-  ): Promise<AuthUser> {
+  async validate(payload: JwtPayload): Promise<UserResponse> {
     if (!payload) throw new UnauthorizedException();
 
     const user = await this.userDao.getById(payload.sub);
     if (!user) throw new InvalidEntityIdException('users');
 
-    const { password, ...result } = user;
+    const { password: _, ...result } = user;
     return result;
   }
 }
