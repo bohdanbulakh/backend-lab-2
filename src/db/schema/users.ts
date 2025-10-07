@@ -1,4 +1,4 @@
-import { pgTable, uuid, varchar } from 'drizzle-orm/pg-core';
+import { pgTable, text, uuid, varchar } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { records } from './records';
 import { currencies } from './currencies';
@@ -7,7 +7,7 @@ export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
   name: varchar('name', { length: 50 }).notNull(),
   username: varchar('username', { length: 50 }).notNull(),
-  password: varchar('password', { length: 50 }).notNull(),
+  password: text('password').notNull(),
   defaultCurrencyName: varchar('default_currency_name', { length: 3 })
     .references(() => currencies.id)
     .notNull(),
