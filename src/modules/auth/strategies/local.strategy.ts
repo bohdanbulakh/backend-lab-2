@@ -18,8 +18,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     const user: InferSelectModel<typeof users> | undefined =
       await this.userDao.getByUsername(username);
 
-    console.log(username);
-
     if (!user) throw new InvalidEntityIdException('users');
 
     await this.validatePassword(password, user.password);
