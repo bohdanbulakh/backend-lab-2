@@ -1,4 +1,4 @@
-# [Payment Manager API](https://lab3.payment-manager.pp.ua)
+# [Payment Manager API](https://lab4.payment-manager.pp.ua)
 
 Simple backend app
 
@@ -21,7 +21,7 @@ IM-31 Group ⇒ 31 % 3 = 1
     ```
 2. Checkout the tag, which corresponds to the number of laboratory work:
    ```sh
-   git checkout v3.0.0
+   git checkout v4.0.0
    ```
 3. Install dependencies
      ```sh
